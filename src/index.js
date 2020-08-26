@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {UseContextProvider} from './useContext'
 
 ReactDOM.render(
-  <React.StrictMode>
+    <UseContextProvider>
     <App />
-  </React.StrictMode>,
+    </UseContextProvider>,
   document.getElementById('root')
 );
 
