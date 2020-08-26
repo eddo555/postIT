@@ -1,87 +1,3 @@
-// import React, { useState } from "react";
-// import List from './List'
-// import firestore from "./firestore";
-
-// function App() {
-//   const [name, setName] = useState();
-//   const [topic, setTopic] = useState();
-//   const [message, setMessage] = useState();
-
-//   function submitHandler(e) {
-//     e.preventDefault();
-//     console.log("submithandler");
-//     console.log(name, topic, message);
-
-//     const db = firestore.firestore();
-//     // db.settings({
-//     //   timestampsInSnapshots: true
-//     // });
-
-//     db.collection("postit").add({
-//       name: { name },
-//       topic: { topic },
-//       message: { message },
-//     });
-
-//     setName("");
-//     setTopic("");
-//     setMessage("");
-//   }
-
-//   // useEffect(() => {
-//   //   const fetchData = async () => {
-//   //     const db = firestore.firestore();
-//   //     const list = db.collection("postit");
-//   //     const snapshot = await list.get();
-//   //     snapshot.forEach((doc) => {
-//   //       console.log(doc.id, doc.data());
-//   //     });
-//   //   };
-//   //   fetchData();
-//   // }, []);
-
-//   return (
-//     <div>
-//       <div className="form-wrapper">
-//         <form onSubmit={submitHandler}>
-//           <label>
-//             Name:
-//             <input
-//               type="text"
-//               name="name"
-//               placeholder="insert name"
-//               onChange={(e) => setName(e.target.value)}
-//             />
-//           </label>
-//           <label>
-//             Topic:
-//             <input
-//               type="text"
-//               name="topic"
-//               palceholder="topic"
-//               onChange={(e) => setTopic(e.target.value)}
-//             />
-//           </label>
-//           <label>
-//             Message:
-//             <textarea
-//               type="text"
-//               name="textarea"
-//               placeholder="Enter message"
-//               onChange={(e) => setMessage(e.target.value)}
-//             />
-//           </label>
-//           <input type="submit" value="submit" />
-//         </form>
-//       </div>
-
-//     </div>
-
-//   );
-// }
-
-// export default App;
-
 import React, { Component } from "react";
 import { UseContextConsumer } from "./useContext";
 
@@ -95,21 +11,26 @@ class App extends Component {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    
   };
-  resetForm= () => {
-    this.setState({newName:""})
-    this.setState({newTopic:""})
-    this.setState({newMessage:""})
-
-  }
+  resetForm = () => {
+    this.setState({ newName: "" });
+    this.setState({ newTopic: "" });
+    this.setState({ newMessage: "" });
+  };
 
   render() {
     return (
       <UseContextConsumer>
         {({ name, topic, message, postIt }) => (
           <main>
-            <div className="form-wrapper">
+            <div
+              className="form-wrapper"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                width: "50vw",
+              }}
+            >
               <p>
                 {name.length >= 1
                   ? `Hi ${name}`
@@ -156,18 +77,23 @@ class App extends Component {
               >
                 submit
               </button>
-              <button
-                onClick={() => this.resetForm()}
+              <button onClick={() => this.resetForm()}>Reset</button>
+            </div>
+            {topic ? 
+              <div
+                className="message-wrapper"
+                style={{
+                  border: "solid black 0.01",
+                  color: "black",
+                  backgroundColor: "yellow",
+                  width:"10vw"
+                }}
               >
-                Reset
-              </button>
-            </div>
-            <div className="message-wrapper">
-                <p>
-                  {topic}
-                </p>
+                <p>{topic}</p>
                 <p>{message}</p>
-            </div>
+              </div>
+             : null
+             }
           </main>
         )}
       </UseContextConsumer>

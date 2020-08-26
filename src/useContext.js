@@ -14,9 +14,9 @@ class UseContextProvider extends Component {
         this.setState({name})
         this.setState({topic})
         this.setState({message})
-        const db = firestore.firestore();
 
-
+        
+    const db = firestore.firestore();
     db.collection("postit").add({
       name: { name },
       topic: { topic },

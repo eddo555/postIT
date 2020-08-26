@@ -15,17 +15,7 @@ const firebaseConfig = {
   };
 
   firebase.initializeApp(firebaseConfig)
-//   const db = firebase.firestore();
 
-// function Firebase () {
-//   return (
-//     <UseContextConsumer>
-//       {({name, topic, message}) => (
-//         console.log('fire' + name + ' ' + topic + ' ' + message)
-//       )}
-//     </UseContextConsumer>
-//   )
-// }
 
 
 
@@ -33,3 +23,4 @@ const firebaseConfig = {
 
 
   export default firebase;
+  
