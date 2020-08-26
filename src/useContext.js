@@ -1,5 +1,5 @@
 import React, { createContext, Component } from 'react'
-
+import firestore from './firestore'
 const {Provider, Consumer} = createContext()
 
 class UseContextProvider extends Component {
@@ -10,12 +10,22 @@ class UseContextProvider extends Component {
     }
 
     postIt = (name,topic,message) => {
+        
         this.setState({name})
         this.setState({topic})
         this.setState({message})
-        
+        const db = firestore.firestore();
+
+
+    db.collection("postit").add({
+      name: { name },
+      topic: { topic },
+      message: { message },
+    });
+
+  }
        
-    }
+    
     
 
     render() {

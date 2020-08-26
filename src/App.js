@@ -95,7 +95,14 @@ class App extends Component {
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
+    
   };
+  resetForm= () => {
+    this.setState({newName:""})
+    this.setState({newTopic:""})
+    this.setState({newMessage:""})
+
+  }
 
   render() {
     return (
@@ -148,6 +155,11 @@ class App extends Component {
                 }
               >
                 submit
+              </button>
+              <button
+                onClick={() => this.resetForm()}
+              >
+                Reset
               </button>
             </div>
             <div className="message-wrapper">
